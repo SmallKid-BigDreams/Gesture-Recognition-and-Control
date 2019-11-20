@@ -19,19 +19,16 @@ str2bool = lambda x: (str(x).lower() == 'true')
 
 parser = argparse.ArgumentParser(
     description='PyTorch Jester Training using JPEG')
-parser.add_argument('--config', '-c', help='json config file path')
-parser.add_argument('--eval_only', '-e', default=False, type=str2bool,
-                    help="evaluate trained model on validation data.")
-parser.add_argument('--resume', '-r', default=False, type=str2bool,
-                    help="resume training from given checkpoint.")
-parser.add_argument('--use_gpu', default=True, type=str2bool,
-                    help="flag to use gpu or not.")
-parser.add_argument('--gpus', '-g', help="gpu ids for use.")
+parser.add_argument('--config', '-c', help='json config file path', default='./config_all.json')
+parser.add_argument('--eval_only', '-e', default=False, type=str2bool, help="evaluate trained model on validation data.")
+parser.add_argument('--resume', '-r', default=True, type=str2bool, help="resume training from given checkpoint.")
+parser.add_argument('--use_gpu', default=True, type=str2bool, help="flag to use gpu or not.")
+parser.add_argument('--gpus', '-g', help="gpu ids for use.", default='0')
 
 args = parser.parse_args()
-if len(sys.argv) < 2:
-    parser.print_help()
-    sys.exit(1)
+# if len(sys.argv) < 2:
+#     parser.print_help()
+#     sys.exit(1)
 
 device = torch.device("cuda" if args.use_gpu and torch.cuda.is_available() else "cpu")
 
@@ -93,6 +90,7 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(
                 config['checkpoint']))
+            args.start_epoch = 0
 
     transform = Compose([
         CenterCrop(84),
@@ -135,7 +133,12 @@ def main():
         num_workers=config['num_workers'], pin_memory=True,
         drop_last=False)
 
+    print(len(train_data.classes))
     assert len(train_data.classes) == config["num_classes"]
+
+    print()
+    print(train_data.classes_dict)
+    print()
 
     # define loss function (criterion) and pptimizer
     criterion = nn.CrossEntropyLoss().to(device)

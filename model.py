@@ -5,7 +5,7 @@ class ConvColumn(nn.Module):
 
     def __init__(self, num_classes):
         super(ConvColumn, self).__init__()
-
+        #print("in init")
         self.conv_layer1 = self._make_conv_layer(3, 64, (1, 2, 2), (1, 2, 2))
         self.conv_layer2 = self._make_conv_layer(64, 128, (2, 2, 2), (2, 2, 2))
         self.conv_layer3 = self._make_conv_layer(
@@ -42,6 +42,7 @@ class ConvColumn(nn.Module):
 
 
 if __name__ == "__main__":
+    print("in main")
     input_tensor = torch.autograd.Variable(torch.rand(5, 3, 18, 84, 84))
     model = ConvColumn(27) #ConvColumn(27).cuda()
     output = model(input_tensor) #model(input_tensor.cuda())

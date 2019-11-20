@@ -58,7 +58,10 @@ class VideoFolder(torch.utils.data.Dataset):
         for ext in IMG_EXTENSIONS:
             frame_names.extend(glob.glob(os.path.join(path, "*" + ext)))
         frame_names = list(sorted(frame_names))
+
         num_frames = len(frame_names)
+        # if (num_frames == 0):
+        #     # print("!!!!!!!!!!!!!!! " + path)
 
         # set number of necessary frames
         if self.nclips > -1:
@@ -69,6 +72,7 @@ class VideoFolder(torch.utils.data.Dataset):
         # pick frames
         offset = 0
         if num_frames_necessary > num_frames:
+            # print(num_frames_necessary, num_frames)
             # pad last frame if video is shorter than necessary
             frame_names += [frame_names[-1]] * (num_frames_necessary - num_frames)
         elif num_frames_necessary < num_frames:

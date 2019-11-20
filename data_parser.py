@@ -17,7 +17,7 @@ class JpegDataset(object):
         with open(csv_path) as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=';')
             for row in csv_reader:
-                item = ListDataJpeg(row[0],
+                item = ListDataJpeg(str(row[0]),
                                     row[1],
                                     os.path.join(data_root, row[0])
                                     )
