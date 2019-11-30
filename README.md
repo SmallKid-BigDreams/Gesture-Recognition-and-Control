@@ -21,7 +21,7 @@
     <br />
     <br />
     ·
-    <a href="https://youtu.be/5Qe-2nFc-K8">View Demo</a>
+    <a href="https://youtu.be/28S2qK9o4ME">View Demo</a>
     ·
     <a href="https://github.com/eleow/Gesture-Recognition-and-Control/issues">Report Bug</a>
     ·
