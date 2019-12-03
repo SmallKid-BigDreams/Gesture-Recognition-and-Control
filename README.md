@@ -36,6 +36,13 @@
 
 There are lots of repositories that offer gesture recognition via deep learning. But hardly any that provides an end-to-end solution for gesture recognition and control of an application. So here, we offer a gesture recognition and control system, that you can easily customise for your own applications.
 
+## Demo Video
+
+<a href="https://youtu.be/28S2qK9o4ME" target="_blank"><img src="./misc/video_screenshot.png"
+alt="ITLMS" width="400" border="10" /></a>
+
+Video available on Youtube at https://youtu.be/28S2qK9o4ME
+
 ## Getting Started
 
 ### 1. Download the Jester Dataset
